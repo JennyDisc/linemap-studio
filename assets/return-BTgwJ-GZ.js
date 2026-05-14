@@ -1,0 +1,1 @@
+var e=`/linemap-studio/img/return.svg`;export{e as t};

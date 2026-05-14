@@ -1,1 +1,0 @@
-var e=`/img/return.svg`;export{e as t};
