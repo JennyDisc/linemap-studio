@@ -41,7 +41,7 @@ watch(value, (newVal) => {
 </script>
 
 <template>
-  <div :class="{ flex: props.inline, 'gap-2': props.label, 'w-full': props.fullWidt }">
+  <div :class="{ flex: props.inline, 'gap-2': props.label, 'w-full': props.fullWidth }">
     <Field
       :name="props.name"
       :type="props.type"

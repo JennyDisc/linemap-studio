@@ -1,5 +1,5 @@
 import type { Meta } from 'types/vue-router'
-import { type RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
+import { type RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
 import { setupGuards } from './guards'
 
 export const routes: Array<RouteRecordRaw & { meta: Meta }> = [
@@ -37,7 +37,7 @@ export const routes: Array<RouteRecordRaw & { meta: Meta }> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   scrollBehavior: () => {
     return { left: 0, top: 0 }
   },

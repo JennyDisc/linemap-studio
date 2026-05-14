@@ -3,7 +3,7 @@ import type { Router } from 'vue-router'
 
 export function setupGuards(router: Router) {
   // 處理權限與路由匹配
-  router.beforeEach((to, from, next) => {
+  router.beforeEach((to, _from, next) => {
     // 處理對應不到路由 URL 在路由表就中處理了，此處可省略不寫
 
     // 1.檢查使用者當前裝置

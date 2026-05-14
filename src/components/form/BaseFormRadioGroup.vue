@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['change'])
 
-const { value } = useField(() => props.name)
+const { value, errorMessage } = useField(() => props.name)
 
 watch(value, (newVal) => {
   emit('change', newVal)

@@ -17,13 +17,10 @@ declare module 'vue' {
     BaseFormRadioGroup: typeof import('./src/components/form/BaseFormRadioGroup.vue')['default']
     BaseFormSelect: typeof import('./src/components/form/BaseFormSelect.vue')['default']
     BaseModal: typeof import('./src/components/ui/BaseModal.vue')['default']
-    Button: typeof import('primevue/button')['default']
-    Divider: typeof import('primevue/divider')['default']
     Footer: typeof import('./src/components/layout/Footer.vue')['default']
     Header: typeof import('./src/components/layout/Header.vue')['default']
     InputText: typeof import('primevue/inputtext')['default']
     OrderStepper: typeof import('./src/components/OrderStepper.vue')['default']
-    Password: typeof import('primevue/password')['default']
     RadioButton: typeof import('primevue/radiobutton')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -33,6 +30,5 @@ declare module 'vue' {
     StepPanel: typeof import('primevue/steppanel')['default']
     StepPanels: typeof import('primevue/steppanels')['default']
     Stepper: typeof import('primevue/stepper')['default']
-    ToggleButton: typeof import('primevue/togglebutton')['default']
   }
 }

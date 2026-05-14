@@ -9,7 +9,7 @@ const props = defineProps<{
   store: ReturnType<typeof useRectManager>
 }>()
 
-const openModal = inject<(options: ModalOptions) => void>('openModal')
+const openModal = inject<(options: ModalOptions) => void>('openModal')!
 const { setRectanglesInfo, selectArea } = props.store
 
 // 畫布座標(未縮放)
@@ -313,6 +313,7 @@ watch(
       // dy：圖像在 canvas 上的 左上角 y 座標
       // dWidth：在 canvas 上的 寬度（會自動縮放圖像）
       // dHeight：在 canvas 上的 高度（會自動縮放圖像）
+      if (!ctx) return
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 
       // 壓縮生成 JPEG，壓縮品質（0.0 ~ 1.0），0.9 是偏高品質、檔案較大
@@ -382,7 +383,9 @@ watch(
 watch(
   () => rectState.deletedRectKey,
   () => {
-    selectedRectFun(rectState.selectedRectIndex)
+    if (rectState.selectedRectIndex !== null) {
+      selectedRectFun(rectState.selectedRectIndex)
+    }
     deletedRectFun()
   }
 )
@@ -464,9 +467,10 @@ const updateScale = () => {
         :active="selectedId === rect.id"
         :parent="true"
         @activated="selectedRectFun(rect.id)"
-        @dragging="(x, y) => updateRectPos(x / scale, y / scale, rect.id)"
+        @dragging="(x: number, y: number) => updateRectPos(x / scale, y / scale, rect.id)"
         @resizing="
-          (x, y, w, h) => updateRectSize(x / scale, y / scale, w / scale, h / scale, rect.id)
+          (x: number, y: number, w: number, h: number) =>
+            updateRectSize(x / scale, y / scale, w / scale, h / scale, rect.id)
         "
       >
         <div class="rect-content" :class="{ active: selectedId === rect.id }"></div>

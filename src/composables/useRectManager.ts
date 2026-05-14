@@ -6,7 +6,7 @@ export interface AreaItem {
   y: number
   width: number
   height: number
-  rectId: string
+  rectId: number
 }
 
 export interface RectManagerState {
@@ -26,7 +26,7 @@ export interface RectManagerState {
   // 顯示圖片的區塊尺寸
   displaySize: readonly [number, number]
   // 正在「編輯/所選」矩形
-  selectedRectIndex: string | null
+  selectedRectIndex: number | null
   // 從表單 EditorForm.vue 選「刪除」矩形
   deletedRectKey: number
 }
@@ -65,12 +65,12 @@ export function useRectManager() {
   }
 
   // 選取矩形(點擊畫布中矩形、表單中的動作)
-  const selectArea = (id: string) => {
+  const selectArea = (id: number | null) => {
     rectState.selectedRectIndex = id
   }
 
   // 從表單 EditorForm.vue 按「刪除」
-  const triggerDelete = (id: string) => {
+  const triggerDelete = (id: number) => {
     selectArea(id)
     rectState.deletedRectKey = Date.now()
   }

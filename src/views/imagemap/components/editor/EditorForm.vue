@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { useRectManager, AreaItem, rectState } from '@/composables/useRectManager'
+import { useRectManager, rectState } from '@/composables/useRectManager'
+import type { AreaItem } from '@/composables/useRectManager'
 
 import BaseForm from '@/components/form/BaseForm.vue'
 import BaseFormRadioGroup from '@/components/form/BaseFormRadioGroup.vue'
@@ -32,9 +33,9 @@ type GetRectanglesInfo = {
 type OptionItem = {
   value: string
   label: string
-  inputLabelName: string | null
-  apiKey: string | null
+  actionValueLabelName: string | null
   placeholder: string | null
+  apiKey: string | null
 }
 
 const options: OptionItem[] = [
@@ -54,9 +55,9 @@ const options: OptionItem[] = [
   }
 ]
 
-const currentActionTypeOption = (data: AreaItem) => {
-  const type = data || ''
-  const result = options.find((item) => item.value === type)
+const currentActionTypeOption = (type: string) => {
+  const safeType = type ?? ''
+  const result = options.find((item) => item.value === safeType)
 
   if (!result)
     return {
@@ -128,7 +129,7 @@ const formatRectanglesForApi = (values: any) => {
     const currentValue = values[`actionValue_${r.rectId}`]
     const option = options.find((item) => item.value === currentType)
 
-    const result = {
+    const result: Record<string, any> = {
       type: currentType || '',
       area: {
         x: r.x,

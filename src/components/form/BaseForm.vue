@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Form } from 'vee-validate'
+import type { SubmissionHandler } from 'vee-validate'
 import BaseButton from '@/components/ui/BaseButton.vue'
 
 interface Props {
@@ -14,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['submit'])
 
-const onHandleSubmit = (values, actions) => {
+const onHandleSubmit: SubmissionHandler = (values, actions) => {
   emit('submit', values, actions)
 }
 </script>
