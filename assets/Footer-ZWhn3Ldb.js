@@ -1,0 +1,1 @@
+import{D as e,Y as t,d as n,ft as r,v as i}from"./runtime-core.esm-bundler-BWMzWH56.js";var a={class:`flex justify-center bg-white py-4`},o=i({__name:`Footer`,setup(i){let o=new Date().getFullYear();return(i,s)=>(e(),n(`div`,a,` Copyright © `+r(t(o))+` LINEMap Studio. All rights reserved. `,1))}});export{o as t};
