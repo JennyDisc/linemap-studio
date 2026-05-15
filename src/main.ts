@@ -5,13 +5,16 @@ import router from '@/router/index.ts'
 import '@/utils/veeValidateSchema.ts'
 // primevue 樣式
 import Aura from '@primeuix/themes/aura'
+import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config'
 import { createApp } from 'vue'
 import VueDraggableResizable from 'vue-draggable-resizable'
 import 'vue-draggable-resizable/style.css'
 
 const app = createApp(App)
+const pinia = createPinia()
 
+app.use(pinia)
 app.use(router)
 app.use(PrimeVue, {
   theme: {
