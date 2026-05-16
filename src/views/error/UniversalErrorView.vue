@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import BaseButton from '@/components/ui/BaseButton.vue'
 
 const route = useRoute()
-const router = useRouter()
 
 const errorMap: Record<string, { title: string; content: string; type: string }> = {
   'device-not-supported': {
@@ -24,9 +23,8 @@ const errorInfo = computed(() => {
   return errorMap[code] || errorMap.default
 })
 
-const handleClick = () => {
-  alert('返回登入步驟')
-  router.push({ name: 'orderFlow' })
+const handleBackToLogin = () => {
+  window.location.href = window.location.origin + '/#/order/flow'
 }
 </script>
 
@@ -34,7 +32,7 @@ const handleClick = () => {
   <div class="flex flex-col items-center">
     <p class="mb-4 text-4xl font-bold">{{ errorInfo.title }}</p>
     <p class="text-gray4 mb-8">{{ errorInfo.content }}</p>
-    <BaseButton @click="handleClick">
+    <BaseButton @click="handleBackToLogin">
       <template #prepend>
         <img src="/img/return.svg" alt="登入icon" />
       </template>

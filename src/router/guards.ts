@@ -1,4 +1,5 @@
 import { MIN_SUPPORTED_WIDTH } from '@/constants/breakpoints'
+import { useUserStore } from '@/stores/useUserStore'
 import type { Router } from 'vue-router'
 
 export function setupGuards(router: Router) {
@@ -22,11 +23,18 @@ export function setupGuards(router: Router) {
       })
     }
 
-    // 2.處理登入權限
-    const isLogin = false // 這裡應替換為你的 Auth Store 狀態
-    if (to.meta.needLogin && !isLogin) {
-      return next({ path: 'orderFlow' })
+    // 2.判斷路由頁面是否需要登入權限
+    const userStore = useUserStore()
+    // 檢查使用者目前有沒有 Token，判斷「使用者現在是否有登入?」
+    const isLogin = !!userStore.authUserData?.token
+    // 檢查網址參數裡有沒有 code 或 state，判斷「這是不是 LINE 登入成功後，跳轉回來的那個瞬間?」
+    const isLineCallback = !!to.query.code || !!to.query.state
+
+    if (to.meta.needLogin && !isLogin && !isLineCallback) {
+      // 如果路由頁面需要登入、使用者還沒登入、不是 LINE 回傳過來，就返回到登入頁
+      return next({ name: 'orderFlow' })
     }
+    // 如果路由頁面需要登入、使用者正在登入且是 LINE 回傳過來的狀態，就繼續當前作業流程，不重新定向
 
     next()
   })

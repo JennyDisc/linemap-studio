@@ -7,8 +7,8 @@ const { tokenData, removeToken } = useTokenData()
 
 const service: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  // 10秒沒回應就當呼叫失敗
-  timeout: 10000
+  // 60秒沒回應就當呼叫失敗(Render 開機需要 30~50 秒不等)
+  timeout: 60000
 })
 
 // 1.請求攔截器：發出 API 請求前，自動把 Token 放入 Header
@@ -44,7 +44,7 @@ service.interceptors.response.use(
       // 登入失效，清除 Token 並返回登入頁
       removeToken()
       alert('登入已逾時，請重新登入')
-      router.push('/order/flow')
+      router.push({ name: 'orderFlow' })
     }
 
     // 封裝成統一格式丟回給呼叫 API 的地方
