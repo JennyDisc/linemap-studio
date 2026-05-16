@@ -8,7 +8,7 @@ import { apiPostLogin } from '@/api/user.ts'
 import type { ModalOptions } from '@/composables/useBaseModal'
 import { useUserStore } from '@/stores/useUserStore'
 
-const openModal = inject<(options: ModalOptions) => void>('openModal')
+const openModal = inject<(options: ModalOptions) => void>('openModal')!
 const userStore = useUserStore()
 const currentStep = ref('1')
 const isLineLoading = ref(false)
