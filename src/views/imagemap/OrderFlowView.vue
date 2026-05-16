@@ -83,11 +83,11 @@ onMounted(async () => {
       </template>
 
       <template #content-2="{ activateCallback }">
-        <FriendCheckView @next="activateCallback('3')" />
+        <FriendCheckView @next="activateCallback('3')" @prev="activateCallback" />
       </template>
 
-      <template #content-3>
-        <EditorView />
+      <template #content-3="{ activateCallback }">
+        <EditorView @prev="activateCallback" />
       </template>
     </OrderStepper>
   </div>

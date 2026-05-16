@@ -49,7 +49,7 @@ const handleLineLogin = () => {
         </template>
         使用 LINE 帳號登入
       </BaseButton>
-      <p class="text-gray3 font-medium">點擊後跳轉至官方授權頁面</p>
+      <p class="text-gray3 font-medium">點擊後將跳轉至官方授權頁面</p>
     </div>
 
     <div v-else class="flex flex-col items-center p-8">

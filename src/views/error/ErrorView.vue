@@ -15,7 +15,7 @@ const handleBackToLogin = () => {
       <template #prepend>
         <img src="/img/return.svg" alt="登入icon" />
       </template>
-      返回登入步驟
+      前往登入步驟
     </BaseButton>
   </div>
 </template>
